@@ -1,10 +1,11 @@
 # Import the required libraries
+from cgitb import text
 from textwrap import fill
 from tkinter import *
 from tkinter import ttk
 from tkinter.font import BOLD
 import car
-import ctypes
+
 
 # Create an instance of tkinter frame
 win = Tk()
@@ -41,7 +42,8 @@ label = ttk.Label(headingFrame,
 label.pack(pady=30)
 
 selectionCB = list()
-headerList = ['Symboling', 'FuelType', 'DoorNumber', 'CarBody', 'DriveWheel', 'WheelBase','CurbWeight', 'CylinderNumber', 'Horsepower', 'PeakRPM', 'CityMPL', 'HighwayMPL']
+headerList = ['Symboling', 'FuelType', 'DoorNumber', 'CarBody', 'DriveWheel', 'WheelBase',
+              'CurbWeight', 'CylinderNumber', 'Horsepower', 'PeakRPM', 'CityMPL', 'HighwayMPL']
 
 
 # Add a Combobox widget
@@ -57,40 +59,60 @@ for i in range(5):
     selectionCB.append(cb)
 
 
+selButtons = {0: [],
+              1: [],
+              2: [],
+              3: [],
+              4: []}
 
 
 def selectionOnCB(event, row):
-    radioDict = {'Symboling': ['Safe', 'Medium', 'Risk'],
-     'FuelType': ['Petrol', 'Diesel'],
-     'DoorNumber':['Two', 'Four'],
-     'CarBody':['Convertible', 'Sedan', 'Hatch Back', 'SUV'],
-     'DriveWheel':['RWD', 'FWD', '4WD'],
-     'WheelBase':['88-95', '95-105', '105-120'],
-     'CurbWeight': ['below 2200', 'above 2200'],
-     'CylinderNumber':['two-three', 'four-six', 'eight-twelve'],
-     'Horsepower':['less than 200', '200 to 250', '250 and above'],
-     'PeakRPM':['4000-4750(low)', '4751-5000(medium)', '5000-6000(high)'],
-     'CityMPL':['12-16', '17-24', '25-35', '36 and above'],
-     'HighwayMPL':['14-18', '19-26', '27-35', '36 and above']}
 
+    radioDict = {'Symboling': ['Safe', 'Medium', 'Risk'],
+                 'FuelType': ['Petrol', 'Diesel'],
+                 'DoorNumber': ['Two', 'Four'],
+                 'CarBody': ['Convertible', 'Sedan', 'Hatch Back', 'SUV'],
+                 'DriveWheel': ['RWD', 'FWD', '4WD'],
+                 'WheelBase': ['88-95', '95-105', '105-120'],
+                 'CurbWeight': ['below 2200', 'above 2200'],
+                 'CylinderNumber': ['two-three', 'four-six', 'eight-twelve'],
+                 'Horsepower': ['less than 200', '200 to 250', '250 and above'],
+                 'PeakRPM': ['4000-4750(low)', '4751-5000(medium)', '5000-6000(high)'],
+                 'CityMPL': ['12-16', '17-24', '25-35', '36 and above'],
+                 'HighwayMPL': ['14-18', '19-26', '27-35', '36 and above']}
     selectedOption = radioDict[selectionCB[row].get()]
+    for i in selButtons[row]:
+        i.destroy()
 
     def buildRadioButtons(selectedList):
         selected = StringVar()
+        selButtons[row].clear()
+
         for each in range(len(selectedList)):
             r = ttk.Radiobutton(
                 selectionFrame,
                 text=selectedList[each],
-                value=each,
+                value=selectedList[each],
                 variable=selected)
-            r.grid(row=row, column=each+1, padx=5, pady=5)
+            r.grid(row=row, column=each+1, padx=5, pady=5, sticky=W)
+            selButtons[row].append(r)
 
     buildRadioButtons(selectedOption)
+    print(selButtons)
 
-findCars = ttk.Button(buttonFrame,
-text="Find Cars")
-findCars.pack()
 
+def findCars():
+    for i in range(5):
+        texti = selButtons[i].get()
+        e = Entry(win)
+        e.pack()
+        e.insert(0,texti)
+
+
+findCarsButton = ttk.Button(buttonFrame,
+                            text="Find Cars",
+                            command=findCars)
+findCarsButton.pack()
 
 
 win.mainloop()
