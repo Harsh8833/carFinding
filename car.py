@@ -1,11 +1,7 @@
 import pandas as pd
 
 
-sampleDict = {'FuelType': 'Petrol',
-              'Symboling': 'Safe',
-              'DoorNumber': 'Four',
-              'CarBody': 'Sedan',
-              'DriveWheel': 'FWD'}
+sampleDict = {'CurbWeight': 'above 2200'}
 
 sampleDict1 = {'WheelBase': '105-120',
                'CylinderNumber': 'four-six',
@@ -14,7 +10,7 @@ sampleDict1 = {'WheelBase': '105-120',
                'PeakRPM': '4000-4750(low)'}
 
 filterConditions = {'Symboling': {'Safe': 'Symboling < 0',
-                                  'Medium': 'Symboling == 0 & Symboling == 1',
+                                  'Medium': 'Symboling == 0 | Symboling == 1',
                                   'Risk': 'Symboling > 1'},
                     'FuelType': {'Petrol': "FuelType == 'petrol'",
                                  'Diesel': "FuelType == 'diesel'"},
@@ -32,11 +28,23 @@ filterConditions = {'Symboling': {'Safe': 'Symboling < 0',
                                   '105-120': 'WheelBase > 105'},
                     'CurbWeight': {'below 2200': 'CurbWeight < 2200',
                                    'above 2200': 'CurbWeight >= 2200'},
-           
-                    'Horsepower': ['less than 200', '200 to 250', '250 and above'],
-                    'PeakRPM': ['4000-4750(low)', '4751-5000(medium)', '5000-6000(high)'],
-                    'CityMPL': ['12-16', '17-24', '25-35', '36 and above'],
-                    'HighwayMPL': ['14-18', '19-26', '27-35', '36 and above']}
+                    'CylinderNumber': {'two-three': "CylinderNumber == 'two' | CylinderNumber == 'three'",
+                                       'four-six': "CylinderNumber == 'four' | CylinderNumber == 'five' | CylinderNumber == 'six'",
+                                       'eight-twelve': "CylinderNumber == 'eight' | CylinderNumber == 'nine' | CylinderNumber == 'ten' | CylinderNumber == 'eleven' | CylinderNumber == 'twelve'"},
+                    'Horsepower': {'less than 200': "Horsepower < 200",
+                                   '200 to 250': "Horsepower > 200 & Horsepower < 250",
+                                   '250 and above': "Horsepower > 250"},
+                    'PeakRPM': {'4000-4750(low)': 'PeakRPM < 4750',
+                                '4751-5000(medium)': 'PeakRPM > 4750 & PeakRPM < 5000',
+                                '5000-6000(high)': 'PeakRPM > 5000'},
+                    'CityMPL': {'12-16': 'CityMPL < 16',
+                                '17-24': 'CityMPL < 24 & CityMPL > 16',
+                                '25-35': 'CityMPL < 36 & CityMPL > 24',
+                                '36 and above': 'CityMPL > 36'},
+                    'HighwayMPL': {'14-18':'HighwayMPL < 18',
+                                   '19-26':'HighwayMPL < 26 & HighwayMPL > 19',
+                                   '27-35':'HighwayMPL < 24 & HighwayMPL > 35',
+                                   '36 and above':'HighwayMPL > 36'}}
 
 
 def filterdata(filterDict):

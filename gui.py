@@ -101,7 +101,7 @@ def selectionOnCB(event, row):
                 text=selectedList[each],
                 value=selectedList[each],
                 variable=selected)
-            r.grid(row=row, column=each+1, padx=5, pady=5, sticky=W)
+            r.grid(row=row, column=each+2, padx=5, pady=5, sticky=W)
             selButtons[row].append(r)
     buildRadioButtons(selectedOption)
     print(selButtons)
