@@ -12,7 +12,6 @@ def headerlist():
         listOfHeader.append(i)
     return listOfHeader
 
-<<<<<<< HEAD
 
 sampleDict = {'Symboling': 'Risk'}
 sampleDict1 = {'WheelBase': '105-120',
@@ -36,17 +35,6 @@ filterConditions = {'Symboling': {'Safe': [-2, -1],
                     'PeakRPM': ['4000-4750(low)', '4751-5000(medium)', '5000-6000(high)'],
                     'CityMPL': ['12-16', '17-24', '25-35', '36 and above'],
                     'HighwayMPL': ['14-18', '19-26', '27-35', '36 and above']}
-=======
-sampleDict = {'WheelBase': '105-120',
-              'CylinderNumber': 'four-six',
-              'CityMPL': '17-24',
-              'FuelType': 'Petrol',
-              'PeakRPM': '4000-4750(low)',
-              'CylinderNumber': 'four-six',
-              'CityMPL': '17-24',
-              'FuelType': 'Petrol',
-              'HighwayMPL': '14-18'}
->>>>>>> 41b2aea18f33e941ea0910217549ea1943f73dab
 
 
 def filterdata(filterDict):
