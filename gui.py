@@ -4,6 +4,7 @@ from textwrap import fill
 from tkinter import *
 from tkinter import ttk
 from tkinter.font import BOLD
+from pandastable import Table
 import car
 
 
@@ -26,6 +27,9 @@ selectionFrame.pack(fill=X)
 
 buttonFrame = Frame(win)
 buttonFrame.pack(fill=X)
+
+resultFrame = Frame(win)
+resultFrame.pack(fill=X)
 
 ####################################
 
@@ -104,7 +108,6 @@ def selectionOnCB(event, row):
             r.grid(row=row, column=each+2, padx=5, pady=5, sticky=W)
             selButtons[row].append(r)
     buildRadioButtons(selectedOption)
-    print(selButtons)
     
 
 
@@ -114,13 +117,17 @@ def findCars():
         key = selectionCB[i].get() 
         value = radioValue[i].get()
         filters[key] = value
-    car.filterdata(filters)
+    outputData = car.filterdata(filters)
+    pt = Table(resultFrame, dataframe=outputData)
+    pt.show()
         
 
 findCarsButton = ttk.Button(buttonFrame,
                             text="Find Cars",
                             command=findCars)
 findCarsButton.pack()
+
+
 
 
 win.mainloop()

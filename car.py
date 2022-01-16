@@ -63,8 +63,8 @@ def filterdata(filterDict):
         else:
             filters += filterConditions[key][filterDict[key]]+" & "
     print(filters)
-    res = data[data.eval(filters)]
-    print(res)
+    outputData = data[data.eval(filters)]
+    return outputData
 
 
 filterdata(sampleDict)
