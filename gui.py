@@ -10,7 +10,7 @@ import ctypes
 win = Tk()
 
 # Set the size of the tkinter window
-win.geometry("800x600")
+win.geometry("900x600")
 
 # ctypes.windll.shcore.SetProcessDpiAwareness(1)
 
@@ -47,13 +47,16 @@ headerList = ['Symboling', 'FuelType', 'DoorNumber', 'CarBody', 'DriveWheel', 'W
 # Add a Combobox widget
 currentSelected = list()
 for i in range(5):
+    ttk.Label(selectionFrame, text="Select your choice:",
+              font=("Times New Roman", 10)).grid(column=0,
+                                                 row=i, padx=20, pady=10)
     currentSelectedEach = StringVar()
     cb = ttk.Combobox(selectionFrame,
                       width=25,
                       values=headerList,
                       textvariable=currentSelectedEach)
     cb.bind('<<ComboboxSelected>>', lambda event, x=i: selectionOnCB(event, x))
-    cb.grid(row=i, column=0, padx=20, pady=10)
+    cb.grid(row=i, column=1, padx=20, pady=10)
     selectionCB.append(cb)
 
 
@@ -83,7 +86,7 @@ def selectionOnCB(event, row):
                 text=selectedList[each],
                 value=each,
                 variable=selected)
-            r.grid(row=row, column=each+1, padx=5, pady=5)
+            r.grid(row=row, column=each+2, padx=5, pady=5,sticky=W)
 
     buildRadioButtons(selectedOption)
 

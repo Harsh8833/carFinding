@@ -1,6 +1,6 @@
 import pandas as pd
 
-data = pd.read_csv('Projects\carprice\Cardata.csv')
+data = pd.read_csv('Cardata.csv')
 
 def headerlist():
     listOfHeader = list()
