@@ -1,6 +1,9 @@
 import pandas as pd
 
-data = pd.read_csv('Projects\carFinding\Cardata.csv')
+
+data = pd.read_csv('Cardata.csv')
+
+
 
 
 def headerlist():
@@ -8,7 +11,6 @@ def headerlist():
     for i in data:
         listOfHeader.append(i)
     return listOfHeader
-
 
 sampleDict = {'WheelBase': '105-120',
               'CylinderNumber': 'four-six',
