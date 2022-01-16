@@ -1,14 +1,5 @@
 import pandas as pd
 
-
-sampleDict = {'CurbWeight': 'above 2200'}
-
-sampleDict1 = {'WheelBase': '105-120',
-               'CylinderNumber': 'four-six',
-               'CityMPL': '17-24',
-               'FuelType': 'Petrol',
-               'PeakRPM': '4000-4750(low)'}
-
 filterConditions = {'Symboling': {'Safe': 'Symboling < 0',
                                   'Medium': 'Symboling == 0 | Symboling == 1',
                                   'Risk': 'Symboling > 1'},
@@ -67,4 +58,4 @@ def filterdata(filterDict):
     return outputData
 
 
-filterdata(sampleDict)
+
