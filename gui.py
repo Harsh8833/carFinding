@@ -64,10 +64,9 @@ selButtons = {0: [],
               2: [],
               3: [],
               4: []}
-
+radioValue = [None]*5
 
 def selectionOnCB(event, row):
-
     radioDict = {'Symboling': ['Safe', 'Medium', 'Risk'],
                  'FuelType': ['Petrol', 'Diesel'],
                  'DoorNumber': ['Two', 'Four'],
@@ -86,7 +85,10 @@ def selectionOnCB(event, row):
 
     def buildRadioButtons(selectedList):
         selected = StringVar()
+        
+        radioValue[row] = selected
         selButtons[row].clear()
+        
 
         for each in range(len(selectedList)):
             r = ttk.Radiobutton(
@@ -96,17 +98,20 @@ def selectionOnCB(event, row):
                 variable=selected)
             r.grid(row=row, column=each+1, padx=5, pady=5, sticky=W)
             selButtons[row].append(r)
-
+            
     buildRadioButtons(selectedOption)
-    print(selButtons)
+    
 
 
 def findCars():
+    filters = dict()
     for i in range(5):
-        texti = selButtons[i].get()
-        e = Entry(win)
-        e.pack()
-        e.insert(0,texti)
+        key = selectionCB[i].get() 
+        value = radioValue[i].get()
+        filters[key] = value
+    car.filterdata(filters)
+        
+        
 
 
 findCarsButton = ttk.Button(buttonFrame,
