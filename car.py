@@ -43,7 +43,7 @@ filterConditions = {'Symboling': {'Safe': 'Symboling < 0',
                                 '36 and above': 'CityMPL > 36'},
                     'HighwayMPL': {'14-18':'HighwayMPL < 18',
                                    '19-26':'HighwayMPL < 26 & HighwayMPL > 19',
-                                   '27-35':'HighwayMPL < 24 & HighwayMPL > 35',
+                                   '27-35':'HighwayMPL < 35 & HighwayMPL > 26',
                                    '36 and above':'HighwayMPL > 36'}}
 
 

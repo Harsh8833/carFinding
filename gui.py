@@ -79,7 +79,7 @@ def selectionOnCB(event, row):
                  'DoorNumber': ['Two', 'Four'],
                  'CarBody': ['Convertible', 'Sedan', 'Hatch Back', 'SUV'],
                  'DriveWheel': ['RWD', 'FWD', '4WD'],
-                 'WheelBase': ['88-95', '95-105', '105-120'],
+                 'WheelBase': ['85-95', '95-105', '105-120'],
                  'CurbWeight': ['below 2200', 'above 2200'],
                  'CylinderNumber': ['two-three', 'four-six', 'eight-twelve'],
                  'Horsepower': ['less than 200', '200 to 250', '250 and above'],
