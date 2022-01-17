@@ -1,6 +1,4 @@
 # Import the required libraries
-from cgitb import text
-from textwrap import fill
 from tkinter import *
 from tkinter import ttk
 from tkinter.font import BOLD
@@ -13,8 +11,6 @@ win = Tk()
 
 # Set the size of the tkinter window
 win.geometry("900x600")
-
-# ctypes.windll.shcore.SetProcessDpiAwareness(1)
 
 ####################################
 #  Frames
@@ -45,23 +41,21 @@ label = ttk.Label(headingFrame,
                   font=('orbitron', 45, BOLD))
 label.pack(pady=30)
 
-selectionCB = list()
+
 headerList = ['Symboling', 'FuelType', 'DoorNumber', 'CarBody', 'DriveWheel', 'WheelBase',
               'CurbWeight', 'CylinderNumber', 'Horsepower', 'PeakRPM', 'CityMPL', 'HighwayMPL']
 
-
 # Add a Combobox widget
-currentSelected = list()
+selectionCB = list()
 for i in range(5):
     ttk.Label(selectionFrame, text="Select your choice:",
               font=("Times New Roman", 10)).grid(column=0,
                                                  row=i, padx=20, pady=10)
-    currentSelectedEach = StringVar()
+    #currentSelectedEach = StringVar()
     cb = ttk.Combobox(selectionFrame,
                       width=25,
-                      values=headerList,
-                      textvariable=currentSelectedEach)
-    cb.bind('<<ComboboxSelected>>', lambda event, x=i: selectionOnCB(event, x))
+                      values=headerList)
+    cb.bind('<<ComboboxSelected>>', lambda event, row=i: selectionOnCB(event, row))
     cb.grid(row=i, column=1, padx=20, pady=10)
     selectionCB.append(cb)
 
@@ -107,15 +101,17 @@ def selectionOnCB(event, row):
                 variable=selected)
             r.grid(row=row, column=each+2, padx=5, pady=5, sticky=W)
             selButtons[row].append(r)
+
+
     buildRadioButtons(selectedOption)
     
 
 
 def findCars():
     filters = dict()
-    for i in range(5):
-        key = selectionCB[i].get() 
-        value = radioValue[i].get()
+    for row in range(5):
+        key = selectionCB[row].get() 
+        value = radioValue[row].get()
         filters[key] = value
     outputData = car.filterdata(filters)
     pt = Table(resultFrame, dataframe=outputData)

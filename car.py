@@ -40,20 +40,14 @@ filterConditions = {'Symboling': {'Safe': 'Symboling < 0',
 
 def filterdata(filterDict):
     data = pd.read_csv('Projects\carFinding\Cardata.csv')
-    # for key in filterDict:
-    #     currentIndex = key
-    #     data.set_index(currentIndex, inplace=True)
-    #     resultData = data.loc[filterConditions[key][filterDict[key]]]
-    #     data = resultData
     filters = ""
     keys = list(filterDict.keys())
-    print(keys)
     for key in keys:
-        if key == keys[-1]:
-            filters += filterConditions[key][filterDict[key]]
+        if key == keys[-1]:    
+            nestedDict = filterConditions[key]
+            filters += nestedDict[filterDict[key]]
         else:
             filters += filterConditions[key][filterDict[key]]+" & "
-    print(filters)
     outputData = data[data.eval(filters)]
     return outputData
 
